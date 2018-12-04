@@ -1,3 +1,12 @@
+/*
+ -----------------------------------------------
+ Oisin Redmond - C15492202 - DT228/4
+ Final Year Project Interim Prototype - SurfsApp
+ -----------------------------------------------
+
+ This class is used instantiate a fragment consisting of two floating action buttons
+ when the user chooses a location on the map.*/
+
 package com.example.oisin.fyp_prototype;
 
 import android.content.Intent;

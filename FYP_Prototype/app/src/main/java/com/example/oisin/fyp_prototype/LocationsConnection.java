@@ -1,6 +1,14 @@
+/*
+ -----------------------------------------------
+ Oisin Redmond - C15492202 - DT228/4
+ Final Year Project Interim Prototype - SurfsApp
+ -----------------------------------------------
+
+ This class is used to load the list of locations and their coordinates into
+ Location objects when the application begins running.*/
+
 package com.example.oisin.fyp_prototype;
 
-import com.google.android.gms.maps.GoogleMap;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

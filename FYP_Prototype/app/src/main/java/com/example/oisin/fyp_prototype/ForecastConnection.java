@@ -1,3 +1,11 @@
+/*
+ -----------------------------------------------
+ Oisin Redmond - C15492202 - DT228/4
+ Final Year Project Interim Prototype - SurfsApp
+ -----------------------------------------------
+*/
+
+
 package com.example.oisin.fyp_prototype;
 
 import android.support.annotation.NonNull;
@@ -12,7 +20,7 @@ import java.util.ArrayList;
 
 public class ForecastConnection extends DatabaseConnection{
 
-    public ArrayList<ForecastDay> forecastDays = new ArrayList<>();
+    public ArrayList<ForecastDay> forecastDays = new ArrayList<>(); // Used to store days of forecast for each location
     public DatabaseReference weatherRef;
 
     public ForecastConnection(DatabaseReference db, String name){
@@ -21,11 +29,13 @@ public class ForecastConnection extends DatabaseConnection{
         getDay(name,weatherRef);
     }
 
+    // Uses a datasnapshot of forecast data to extract information and move it into a ForecastDay object
     public void getDay(final String name, final DatabaseReference wRef){
 
         wRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Loops through the days for a locations weather data
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     ForecastDay f = new ForecastDay();
                     f.setName(name);
@@ -48,6 +58,7 @@ public class ForecastConnection extends DatabaseConnection{
                     String[] windDir = new String[8];
                     int i = 0;
 
+                    // Loops through each hour in a day of forecast data
                     for(DataSnapshot ds2 : ds.child("hourly").getChildren()) {
                         feelsLikeTemp[i] = (Float.parseFloat(ds2.child("FeelsLikeC").getValue().toString()));
                         waveHeight[i] = (Float.parseFloat(ds2.child("sigHeight_m").getValue().toString()));

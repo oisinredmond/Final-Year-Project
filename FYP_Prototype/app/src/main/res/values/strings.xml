@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">FYP_Prototype</string>
     <string name="title_activity_maps">Map</string>
+    <array name="search_radius">
+        <item format="int">10</item>
+        <item format="int">30</item>
+        <item format="int">50</item>
+        <item format="int">100</item>
+        <item format="int">200</item>
+        <item format="int">300</item>
+    </array>
+    <string name="search_dialog_title">Set Search Radius</string>
 </resources>

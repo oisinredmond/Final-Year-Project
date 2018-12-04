@@ -1,3 +1,11 @@
+/*
+ -----------------------------------------------
+ Oisin Redmond - C15492202 - DT228/4
+ Final Year Project Interim Prototype - SurfsApp
+ -----------------------------------------------
+
+ This class is used to display forecast data of the chosen location.*/
+
 package com.example.oisin.fyp_prototype;
 
 import android.support.v7.app.AppCompatActivity;
@@ -27,10 +35,11 @@ public class ViewForecastActivity extends AppCompatActivity {
     static ForecastConnection fc;
     DatabaseReference db;
     static String[] dates =  {"1","2","3","4","5","6","7"};
-    static String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     static float[] times = {0,300,600,900,1200,1500,1800,2100};
+
     float[] waveHeights = new float[8], swellHeights = new float[8], windSpeeds = new float[8], temps = new float[8], windDirsDeg= new float[8], precipitation = new float[8], swellDirsDeg = new float[8];
     String[] windDirs = new String[8], swellDirs =  new String[8];
+
     LineChart waveChart;
     LineChart swellChart;
     static Spinner dateMenu;

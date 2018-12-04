@@ -26,7 +26,8 @@ for feature in data["features"]:
             name = name.title()
             name = name.decode("utf-8")
             print(name)
-            data_toWrite["locations"][i] = {"name": [name], "coordinates": feature["geometry"]["coordinates"], "weather": []}
+            data_toWrite["locations"][i] = {"name": [name], "coordinates": feature["geometry"]["coordinates"],
+                                            "weather": []}
             i += 1
 
 

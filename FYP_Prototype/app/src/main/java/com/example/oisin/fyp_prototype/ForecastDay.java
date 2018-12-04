@@ -1,5 +1,14 @@
+/*
+ -----------------------------------------------
+ Oisin Redmond - C15492202 - DT228/4
+ Final Year Project Interim Prototype - SurfsApp
+ -----------------------------------------------
+*/
+
 package com.example.oisin.fyp_prototype;
 
+// This class is used to store forecast data for a day in a particular location
+// Includes arrays of length representative of information for 3 hour intervals in each day
 public class ForecastDay {
 
     private String name;

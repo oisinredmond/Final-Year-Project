@@ -1,6 +1,14 @@
+/*
+ -----------------------------------------------
+ Oisin Redmond - C15492202 - DT228/4
+ Final Year Project Interim Prototype - SurfsApp
+ -----------------------------------------------
+*/
+
 package com.example.oisin.fyp_prototype;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +24,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -39,7 +52,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     double latitude;
     double longitude;
-    int radius = 30000;
+    int searchRadius = 30000;
     ArrayList<LocationObject> locations = new ArrayList<>();
     FloatingActionButton findLocations;
     LocationFragmentMenu menuFragment;
@@ -60,20 +73,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);  // Initialises connection with Firebase Pproject
 
         setContentView(R.layout.activity_maps);
         android.support.v7.widget.Toolbar myToolbar = findViewById(R.id.toolbar);
         findLocations = findViewById(R.id.findLocs);
+        ImageView searchSettings = findViewById(R.id.search_settings);
 
-        loadLocations();
+        loadLocations();  //Loads locations from DB
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        if(checkLocationPermission()) {
+        // If location permission is granted, get users location.
+        if (checkLocationPermission()) {
             Criteria criteria = new Criteria();
             LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
             lastLocation = manager.getLastKnownLocation(String.valueOf(manager.getBestProvider(criteria, true)));
@@ -84,7 +99,53 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         findLocations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Set markers within the search radius
                 getLocations();
+            }
+        });
+
+
+        // Clicking the searchSettings icon instantiates a dialog window with a radio picker
+        searchSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(MapsActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.search_settings_fragment);
+
+                // Array of search radius options in res/values/strings.xml
+                final int[] radius = getResources().getIntArray(R.array.search_radius);
+                RadioGroup rg = dialog.findViewById(R.id.radio_group);
+                Button submit = dialog.findViewById(R.id.submit);
+
+                // Setting radio buttons text
+                for (int i = 0; i < radius.length; i++) {
+                    RadioButton rb = new RadioButton(MapsActivity.this);
+                    rb.setText(radius[i] + " km");
+                    rg.addView(rb);
+                }
+                dialog.show();
+
+                // onCheckChanged loops through radio buttons and matches it with the users choice
+                rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        for (int j = 0; j < radioGroup.getChildCount(); j++) {
+                            RadioButton btn = (RadioButton) radioGroup.getChildAt(j);
+                            if (btn.getId() == i) {
+                                searchRadius = radius[j] * 1000;
+                            }
+                        }
+                    }
+                });
+
+                //Dismisses the dialog view and brings the user back to the Map View
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
@@ -95,6 +156,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.setOnMarkerClickListener(this);
+
+        // Removes floating action buttons for forecast and directions when user moves away from a marker
         map.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
             @Override
             public void onCameraMoveStarted(int i) {
@@ -107,6 +170,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+
+        // Moves camera to the users location when map is initialised
         if (lastLocation != null) {
             final double currentLatitude = lastLocation.getLatitude();
             final double currentLongitude = lastLocation.getLongitude();
@@ -114,16 +179,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             moveCamera(latLng,13);
         }
 
+        // Enabling location tracking given the users permission
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
         }
         else {
-            map.setMyLocationEnabled(true);
+            if(checkLocationPermission()) {
+                map.setMyLocationEnabled(true);
+            }
         }
     }
 
+    // Asks the user for access to the devices GPS for location tracking
     public boolean checkLocationPermission(){
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -146,9 +215,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         moveCamera(latLng,10);
     }
 
+
+    // Zooms camera on a marker and shows action buttons for directions and forecast
     @Override
     public boolean onMarkerClick(final Marker marker){
-        Bundle args = new Bundle();
+        Bundle args = new Bundle(); // Used to pass marker name to the fragment class
         args.putString("markerName",marker.getTitle());
         locationName = marker.getTitle();
         LatLng markerLatLng = marker.getPosition();
@@ -170,12 +241,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         googleApiClient.connect();
     }
 
+    // Instantiates LocationsConnection object to retrieve locations from DB
     public void loadLocations(){
         db = FirebaseDatabase.getInstance().getReference().child("locations");
         locationsDb = new LocationsConnection(db);
         locationsDb.loadLocations();
     }
 
+    // Searches location object arraylist and sets markers for those within search radius
     public void getLocations(){
         locations = locationsDb.getLocations();
         map.clear();
@@ -184,8 +257,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             String name = locations.get(i).name;
             double lat = locations.get(i).latitude;
             double lon = locations.get(i).longitude;
+            // Calculating distance between users location and markers
             Location.distanceBetween(locations.get(i).latitude,locations.get(i).longitude,lastLocation.getLatitude(),lastLocation.getLongitude(),dist);
-            if(dist[0] < radius) {
+            if(dist[0] < searchRadius) {
                 MarkerOptions markerOptions = new MarkerOptions();
                 LatLng latLng = new LatLng(lat, lon);
                 markerOptions.position(latLng);

@@ -1,3 +1,12 @@
+/*
+ -----------------------------------------------
+ Oisin Redmond - C15492202 - DT228/4
+ Final Year Project Interim Prototype - SurfsApp
+ -----------------------------------------------
+
+ This class is used as a plain old java object to represent
+ information for a particular location: name and coordinates.*/
+
 package com.example.oisin.fyp_prototype;
 
 public class LocationObject {
