@@ -74,6 +74,7 @@ public class ViewForecastActivity extends AppCompatActivity {
         });
     }
 
+    // Gets each forecast day for the location and sets the dates for the dropdown menu
     public static void getForecast() {
         forecastDays = fc.forecastDays;
         for(int i =0; i< dates.length; i++) {
@@ -83,12 +84,14 @@ public class ViewForecastActivity extends AppCompatActivity {
         pb.setVisibility(View.INVISIBLE);
     }
 
+    // Creates a dropdown menu for the user to choose a day in the week
     public static void setAdapter(){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MyApplication.getAppContext(), android.R.layout.simple_spinner_item, dates);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         dateMenu.setAdapter(adapter);
     }
 
+    // Sets the text views and graphs using forecast data
     public void setViews(int pos){
         ForecastDay currentDay = forecastDays.get(pos);
         List<Entry> waveEntries = new ArrayList<>();
@@ -130,6 +133,7 @@ public class ViewForecastActivity extends AppCompatActivity {
             swellEntries.add(new Entry(times[i],swellHeights[i]));
         }
 
+        // Creating Line Graphs for wave and swell heights
         LineDataSet waveDataSet =  new LineDataSet(waveEntries, "Wave Heights");
         waveDataSet.setColor(android.graphics.Color.argb(255,56,211,238));
         waveDataSet.setValueTextColor(android.graphics.Color.argb(1,109,109,109));
