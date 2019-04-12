@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:layout_centerHorizontal="true"
+    android:gravity="top">
+
+    <AutoCompleteTextView
+        android:id="@+id/searchBar"
+        android:hint="Enter a location name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="20dp"
+        android:padding="10dp"
+        android:lines="1"
+        android:background="#FFFFFF"/>
+
+    <ImageView
+        android:layout_toRightOf="@+id/searchBar"
+        android:background="@color/colorPrimary"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_search"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"/>
+
+</RelativeLayout>

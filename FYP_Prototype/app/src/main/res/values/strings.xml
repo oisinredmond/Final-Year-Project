@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FYP_Prototype</string>
+    <string name="app_name">SurfsApp</string>
     <string name="title_activity_maps">Map</string>
     <array name="search_radius">
         <item format="int">10</item>
@@ -10,4 +10,12 @@
         <item format="int">300</item>
     </array>
     <string name="search_dialog_title">Set Search Radius</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_account">AccountActivity</string>
 </resources>

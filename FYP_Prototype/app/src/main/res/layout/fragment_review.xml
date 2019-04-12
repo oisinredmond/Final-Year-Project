@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#E8E8E8"
+    android:background="#FFFFFF"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 

@@ -2,17 +2,31 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:colorPrimary">#06B7FF</item>
-        <item name="android:colorPrimaryDark">#0082FF</item>
-        <item name="android:colorAccent">#82D6FF</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="textTheme">
+    <style name="textTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginTop">20dp</item>
-        <item name="android:textColor">#6D6D6D</item>
+        <item name="android:textColor">@color/text_color_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/rating_bar_fill</item>
+        <item name="colorControlActivated"></item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
