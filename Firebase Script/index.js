@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 const fetch = require('node-fetch');
 admin.initializeApp(functions.config().firebase);
 const baseUrl = "http://api.worldweatheronline.com/premium/v1/marine.ashx?";
-const params = "key=9bd486076f074d6f873141215181411&format=json&tide=yes&q=";
+const params = "key=3bcdb7b319c04358a76141054190304&format=json&tide=yes&q=";
 
 exports.updateForecasts = functions.https.onRequest((req, res) => {
   var url = "";

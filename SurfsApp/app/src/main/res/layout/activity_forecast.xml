@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:animateLayoutChanges="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ViewForecastActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:id="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:text="" />
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/fragmentPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="56dp">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/dateSpinnerContainer"
+                    android:backgroundTint="@color/colorPrimary"
+                    app:cardCornerRadius="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/dateSpinner"
+                        android:backgroundTint="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"/>
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/dateSpinnerContainer"
+                    android:text="Overview"
+                    android:id="@+id/overviewTitle" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/overview_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/overviewTitle"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/weatherBox"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/currentWeatherIcon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/ic_wi_rain"/>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_below="@+id/currentWeatherIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="5dp"
+                            android:layout_marginBottom="3dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/currentTemp"
+                                android:textColor="@color/white"
+                                android:text="22C"
+                                android:textSize="20sp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_centerHorizontal="true" />
+                        </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/waveBox"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="12dp"
+                            android:scaleY="1.2"
+                            android:id="@+id/currentWaveIcon"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/ic_noun_wave_51723"/>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_below="@+id/currentWaveIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="5dp"
+                            android:layout_marginBottom="3dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/currentWaveHeight"
+                                android:textColor="@color/white"
+                                android:text="22C"
+                                android:textSize="20sp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_centerHorizontal="true" />
+                        </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/precipPressure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/precipitationIcon"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="15dp"
+                                android:scaleX="1.8"
+                                android:scaleY="1.8"
+                                android:src="@drawable/ic_wi_raindrops" />
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/currentPrecipCard"
+                                android:layout_marginTop="23dp"
+                                app:cardCornerRadius="5dp"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:layout_toRightOf="@+id/precipitationIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/currentPrecip"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:layout_marginHorizontal="2dp"
+                                    android:text="5.0mm"
+                                    android:textSize="15sp" />
+                                </android.support.v7.widget.CardView>
+
+                            <ImageView
+                                android:id="@+id/barometerIcon"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="13dp"
+                                android:scaleX="1.1"
+                                android:scaleY="1.1"
+                                android:layout_toRightOf="@id/currentPrecipCard"
+                                android:src="@drawable/ic_wi_barometer" />
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/currentPressureCard"
+                                android:layout_marginTop="23dp"
+                                app:cardCornerRadius="5dp"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:layout_toRightOf="@+id/barometerIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/currentPressure"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="2dp"
+                                android:text="1200 hPa"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+                            </android.support.v7.widget.CardView>
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="160dp"
+                            android:layout_height="2dp"
+                            android:layout_below="@id/precipPressure"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="4dp"
+                            android:background="#c0c0c0"
+                            android:id="@+id/line"/>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/line">
+
+                            <ImageView
+                                android:id="@+id/windDirIcon"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginEnd="3dp"
+                                android:src="@drawable/wind_direction" />
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/currentWindSpeedCard"
+                                app:cardCornerRadius="5dp"
+                                android:layout_marginTop="7dp"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:layout_toRightOf="@+id/windDirIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/currWindSpeed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_marginHorizontal="2dp"
+                                android:layout_toRightOf="@+id/windDirIcon"
+                                android:textSize="15sp" />
+                            </android.support.v7.widget.CardView>
+
+                            <TextView
+                                android:id="@+id/currWindDir"
+                                android:textColor="@color/orange"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_toRightOf="@+id/currentWindSpeedCard"
+                                android:textSize="15sp" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+                <RelativeLayout
+                    android:id="@+id/expandForecast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:layout_margin="2dp"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
+                    android:background="@color/colorPrimary"
+                    android:layout_below="@id/overview_layout"
+                    android:backgroundTint="@color/colorPrimary">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
+                        android:layout_centerVertical="true"
+                        android:textColor="#FFFFFF"
+                        android:textAlignment="center"
+                        android:id="@+id/fullForecastLabel"
+                        android:text="Full Heat/Rain Forecast"/>
+
+                    <ImageView
+                        android:id="@+id/expandArrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleY="1.3"
+                        android:scaleX="1.3"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/fullForecastLabel"
+                        android:src="@drawable/baseline_expand_more_24"/>
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/tempChart"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_marginTop="5dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_below="@+id/expandForecast"
+                    android:layout_marginHorizontal="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/heatPrecipRadioLayout"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioGroup
+                                android:id="@+id/heatPrecipRadio"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <RadioButton
+                                    android:id="@+id/heatRadio"
+                                    android:textSize="11sp"
+                                    android:checked="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Heat"/>
+
+                                <RadioButton
+                                    android:id="@+id/precipRadio"
+                                    android:textSize="11sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Precipitation"/>
+                            </RadioGroup>
+
+                            <RadioGroup
+                                android:id="@+id/todayWeekRadio"
+                                android:orientation="horizontal"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <RadioButton
+                                    android:id="@+id/todayRadio"
+                                    android:textSize="10sp"
+                                    android:checked="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Day"/>
+
+                                <RadioButton
+                                    android:id="@+id/weekRadio"
+                                    android:textSize="10sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Week"/>
+                            </RadioGroup>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_below="@id/heatPrecipRadioLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <com.github.mikephil.charting.charts.BarChart
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:layout_marginBottom="5dp"
+                                android:id="@+id/generalChart">
+                            </com.github.mikephil.charting.charts.BarChart>
+
+                            <com.github.mikephil.charting.charts.LineChart
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:id="@+id/generalChartWeek"
+                                android:layout_marginBottom="5dp"
+                                android:visibility="gone">
+                            </com.github.mikephil.charting.charts.LineChart>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/tempChart"
+                    android:text="Wind"
+                    android:id="@+id/windTitle" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/windTitle"
+                android:id="@+id/windLayout"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime1"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText1"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:id="@+id/windDir1"
+                            android:tag="windDir1"
+                            android:layout_below="@id/windTime1"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir1"
+                            android:tag="windSpeed1"
+                            android:textSize="13dp"
+                            android:id="@+id/windSpeed1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed1"
+                            android:id="@+id/windDirText1"
+                            android:tag="windDirText1"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime2"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText2"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/windTime2"
+                            android:tag="windDir2"
+                            android:id="@+id/windDir2"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir2"
+                            android:tag="windSpeed2"
+                            android:textSize="13dp"
+                            android:id="@+id/windSpeed2"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed2"
+                            android:id="@+id/windDirText2"
+                            android:tag="windDirText2"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime3"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText3"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerInParent="true"
+                            android:layout_below="@id/windTime3"
+                            android:id="@+id/windDir3"
+                            android:tag="windDir3"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir3"
+                            android:tag="windSpeed3"
+                            android:textSize="13dp"
+                            android:id="@+id/windSpeed3"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed3"
+                            android:id="@+id/windDirText3"
+                            android:tag="windDirText3"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime4"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText4"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/windTime4"
+                            android:id="@+id/windDir4"
+                            android:tag="windDir4"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir4"
+                            android:textSize="13dp"
+                            android:tag="windSpeed4"
+                            android:id="@+id/windSpeed4"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed4"
+                            android:id="@+id/windDirText4"
+                            android:tag="windDirText4"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime5"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText5"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/windTime5"
+                            android:id="@+id/windDir5"
+                            android:tag="windDir5"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir5"
+                            android:tag="windSpeed5"
+                            android:textSize="13dp"
+                            android:id="@+id/windSpeed5"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed5"
+                            android:id="@+id/windDirText5"
+                            android:tag="windDirText5"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime6"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText6"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/windTime6"
+                            android:tag="windDir6"
+                            android:id="@+id/windDir6"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir6"
+                            android:tag="windSpeed6"
+                            android:textSize="13dp"
+                            android:id="@+id/windSpeed6"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed6"
+                            android:id="@+id/windDirText6"
+                            android:tag="windDirText6"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime7"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText7"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/windTime7"
+                            android:id="@+id/windDir7"
+                            android:tag="windDir7"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir7"
+                            android:tag="windSpeed7"
+                            android:textSize="13dp"
+                            android:id="@+id/windSpeed7"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed7"
+                            android:id="@+id/windDirText7"
+                            android:tag="windDirText7"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/windTime8"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/windTimeText8"
+                                android:textSize="11sp"
+                                android:textColor="@color/white"
+                                android:text="3pm"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginHorizontal="3dp"/>
+                        </android.support.v7.widget.CardView>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/windTime8"
+                            android:id="@+id/windDir8"
+                            android:tag="windDir8"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/wind_direction"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/windDir8"
+                            android:tag="windSpeed8"
+                            android:textSize="13dp"
+                            android:id="@+id/windSpeed8"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/windSpeed8"
+                            android:id="@+id/windDirText8"
+                            android:tag="windDirText8"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/windLayout"
+                android:id="@+id/waveHeightTitle"
+                android:text="Waves Height/Period"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+                <android.support.v7.widget.CardView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/waveSwellChartLayout"
+                    android:orientation="vertical"
+                    app:cardElevation="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_below="@+id/waveHeightTitle"
+                    app:cardCornerRadius="5dp"
+                    android:layout_marginHorizontal="5dp">
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <com.github.mikephil.charting.charts.CombinedChart
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:id="@+id/waveSwellChart">
+                            </com.github.mikephil.charting.charts.CombinedChart>
+                        </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:elevation="5dp"
+        android:gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation_view"
+            app:itemTextColor="#FFFFFF"
+            app:itemIconTint="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            android:background="@color/colorPrimary"
+            app:menu="@menu/bottom_nav_menu" />
+    </RelativeLayout>
+</RelativeLayout>

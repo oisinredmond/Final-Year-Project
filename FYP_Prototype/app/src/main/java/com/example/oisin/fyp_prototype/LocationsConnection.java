@@ -3,9 +3,7 @@
  Oisin Redmond - C15492202 - DT228/4
  Final Year Project Interim Prototype - SurfsApp
  -----------------------------------------------
-
- This class is used to load the list of locations and their coordinates into
- Location objects when the application begins running.*/
+*/
 
 package com.example.oisin.fyp_prototype;
 
@@ -16,16 +14,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class LocationsConnection extends DatabaseConnection {
+public class DatabaseConnection {
 
-    private ArrayList<LocationObject> locations = new ArrayList<>();
+    static DatabaseReference databaseRef;
+
+    public DatabaseConnection(DatabaseReference dbRef){
+        databaseRef = dbRef;
+    }
+
+    public static ArrayList<LocationObject> locations = new ArrayList<>();
 
     public ArrayList<LocationObject> getLocations() {
         return locations;
-    }
-
-    public LocationsConnection(DatabaseReference db){
-        super(db);
     }
 
     public void loadLocations() {
@@ -48,3 +48,4 @@ public class LocationsConnection extends DatabaseConnection {
         });
     }
 }
+

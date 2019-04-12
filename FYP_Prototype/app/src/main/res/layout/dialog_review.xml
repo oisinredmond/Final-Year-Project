@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="300dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@color/colorAccent"
+    android:layout_centerInParent="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rating"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textSize="15dp"/>
+
+    <android.support.v7.widget.AppCompatRatingBar
+        android:id="@+id/reviewRating"
+        android:progressTint="@color/rating_bar_fill"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/reviewSummary"
+        android:hint="Summary"
+        android:background="#FFFFFF"
+        android:gravity="start"
+        android:lines="2"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/reviewBody"
+        android:gravity="start"
+        android:hint="Review body"
+        android:padding="5dp"
+        android:lines="8"
+        android:background="#FFFFFF"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:text="Upload an Image" />
+
+    <ImageView
+        android:id="@+id/image_upload"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_add"
+        android:background="@color/colorPrimary"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

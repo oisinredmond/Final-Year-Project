@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:gravity="top">
+
+    <TextView
+        android:text="Add a Friend"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/searchBar"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:hint="Email address"
+        android:layout_below="@+id/title"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="20dp"
+        android:padding="10dp"
+        android:lines="1"
+        android:background="#FFFFFF"/>
+
+    <ImageView
+        android:id="@+id/submit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/email"
+        android:layout_below="@+id/title"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/ic_add" />
+
+</RelativeLayout>
